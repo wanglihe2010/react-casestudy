@@ -1,0 +1,38 @@
+.container {
+  width: 40%;
+  max-width: 400px;
+  height: 2rem;
+  float:left;
+  vertical-align: middle;
+  margin-left: auto;
+  margin-right: auto;
+  align-self: auto;
+}
+
+.container form{
+  vertical-align: middle;
+  margin: auto;
+}
+.embed-submit-field {
+  position: relative;
+}
+
+.embed-submit-field input {
+  width: 100%;
+  height: 100%;
+  font-size: large;
+}
+
+.embed-submit-field button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  border: none;
+  width: 30px;
+  height: 80%;
+  margin: 1px;
+  background-image:url("./search_icon.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+

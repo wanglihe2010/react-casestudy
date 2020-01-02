@@ -1,30 +1,94 @@
-.navbar {
-  background-color: #282c34;
-  overflow: hidden;
-
-}
-
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333;
-}
-
-li {
+.nav_left {
   float: left;
+  position: relative;
+  width: auto;
+  width: 10%;
+  min-width: fit-content;
+}
+
+.nav_right {
+  float: right;
+  position: relative;
+  width: auto;
+  min-width: fit-content;
+  overflow: auto;
+}
+
+.nav_fill {
+  width: auto;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.navbar {
+  background-color: white;
+  height: 50px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.nav_logo {
+  position: relative;
+  float: left;
+  width: 50px;
+  height: 100%;
+  margin-left: 20px;
+}
+.navbar ul {
+  list-style-type: none;
+  margin: auto;
+  padding: 0;
+  float: right;
+}
+
+.navbar li {
+  float: left;
+  margin-left: 50px;
+  margin-bottom: auto;
+  margin-top: auto;
 }
 
 li a {
   display: block;
-  color: white;
+  color: black;
   text-align: center;
-  padding: 14px 16px;
   text-decoration: none;
 }
 
 /* Change the link color to #111 (black) on hover */
 li a:hover {
   background-color: #111;
+}
+.float_left {
+  float: left;
+}
+.float_right {
+  float: right;
+}
+
+.cart-box {
+  position: relative;
+}
+
+.cart-image {
+  width: 50px;
+  height: 50px;
+  align-items: center;
+  background: url("./cart_icon.svg") no-repeat;
+  position: relative;
+}
+
+
+.cart-counter {
+  position: absolute;
+  font-size: small;
+  background: white;
+  top:0%;
+  right:0%;
+  width: 20px;
+  height:20px;
+  text-align: center;
+  border-radius: 50%;
+  color:black;
+  border:1px solid black;
 }

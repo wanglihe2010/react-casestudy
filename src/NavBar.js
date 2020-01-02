@@ -3,23 +3,33 @@ import logo from './logo.svg'
 import React from 'react';
 import './NavBar.css';
 
+import SearchBar from './SearchBar';
+
 function Navbar(props) {
   return (
     <nav className ="navbar">
-      <ul>
-        <li>
-          <Link><img src = {logo} style={{width: 50 , height: 50}}/></Link>
-        </li>
-        <li>
-          search bar
-        </li>
-        <li>
-          <button>sign-in</button>
-        </li>
-        <li>
-          <button>cart</button>
-        </li>
-      </ul>
+      <div className ="nav_left">
+        <Link><img src = {logo} alt="logo" className="nav_logo"/></Link>
+      </div> 
+      <div className ="nav_right">
+        <ul>
+          <li>
+            <a href="#" >
+              sign up
+            </a>
+          </li>
+          <li>
+            <a href="#" className="cart-box">
+              <div className="cart-image">
+                <div className="cart-counter">3</div>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div> 
+      <div className ="nav_fill">
+        <SearchBar/>
+      </div>   
     </nav>
   );
 }
