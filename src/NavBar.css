@@ -3,22 +3,22 @@
   width: auto;
   width: 10%;
   height:100%;
-  min-width: fit-content;
+  min-width: 50px;
 }
 
 .nav_right {
   right: 0;
   position: absolute;
-  width: 20%;
+  width: 30%;
   height: 100%;
-  min-width: fit-content;
+  min-width: 100px;
   overflow: auto;
+  overflow: hidden;
 }
 
-.nav_fill {
-  width: 70%;
+.nav_mid {
+  width: 60%;
   height:100%;
-  white-space: nowrap;
   position: absolute;
   left: 10%
 }
@@ -27,7 +27,7 @@
   background-color: white;
   height: 50px;
   width: 100%;
-  overflow: hidden;
+  min-width: 250px;
   position: relative;
 }
 
@@ -39,19 +39,20 @@
   left:30%;
   transform: translate(-50%,-50%);
 }
-.navbar ul {
-  list-style-type: none;
-  margin: auto;
-  padding: 0;
-  float: right;
+
+.signup {
+  position: absolute;
+  width:70%;
+  height: 100%;
+}
+.cart {
+  position: absolute;
+  right: 0;
+  width: 30%;
+  height: 100%;
 }
 
-.navbar li {
-  margin-left: 50px;
-  display: inline;
-}
-
-li a {
+.navbar a {
   display: block;
   color: black;
   text-align: center;
@@ -59,32 +60,34 @@ li a {
 }
 
 /* Change the link color to #111 (black) on hover */
-li a:hover {
-  background-color: #111;
+.navbar a:hover {
+  background-color: gray;
 }
 
 
-.cart-box {
-  position: relative;
+.mid-position {
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
 }
 
 .cart-image {
-  width: 50px;
-  height: 50px;
-  align-items: center;
-  background: url("./cart_icon.svg") no-repeat;
+  width: 35px;
+  height: 35px;
+  background-image: url("./cart_icon.svg");
+  background-size: 35px 35px;
   position: relative;
 }
 
 
 .cart-counter {
   position: absolute;
-  font-size: small;
+  font-size: 12px;
   background: white;
-  top:0%;
   right:0%;
-  width: 20px;
-  height:20px;
+  width: 15px;
+  height:15px;
   text-align: center;
   border-radius: 50%;
   color:black;

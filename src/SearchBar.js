@@ -14,7 +14,7 @@ class SearchBar extends Component {
 
   render() {
     return(
-      <div className="container">
+      <div className="container mid-position">
         <form onSubmit={this.searchForm}>
           <div className="embed-submit-field">
             <input className ="search-input" type="text" placeholder = "Search"></input>
