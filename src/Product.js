@@ -1,10 +1,40 @@
 import React, { Component } from 'react';
+import './Product.css'
 
 class Product extends Component {
   render() {
     return (
       <div>
-        This is product detail page. 
+        <ul>
+          <li>one</li>
+          <li>two</li>
+          <li>three</li>
+          <li>fourfive six</li>
+          <li>one</li>
+          <li>two</li>
+          <li>three</li>
+          <li>fourfive six</li>
+          <li>one</li>
+          <li>two</li>
+          <li>three</li>
+          <li>fourfive six</li>
+          <li>one</li>
+          <li>two</li>
+          <li>three</li>
+          <li>fourfive six</li>
+          <li>one</li>
+          <li>two</li>
+          <li>three</li>
+          <li>fourfive six</li>
+          <li>one</li>
+          <li>two</li>
+          <li>three</li>
+          <li>fourfive six</li>
+          <li>one</li>
+          <li>two</li>
+          <li>three</li>
+          <li>fourfive six</li>
+        </ul>
       </div>
     );
   }

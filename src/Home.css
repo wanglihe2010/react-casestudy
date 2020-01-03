@@ -1,0 +1,38 @@
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  /*
+  grid-template-columns: repeat(4,1fr);
+  grid-gap: 1rem;
+  grid-auto-rows: minmax(300px, auto);
+  */
+  padding: 1rem;
+}
+
+.wrapper div {
+  background-color: #eee;
+}
+
+.productCard {
+  justify-items: center;
+  align-items: center;
+  position: relative;
+  margin: 1rem;
+  width: 200px;
+  height: 300px;
+}
+
+.productCard div {
+  margin: auto;
+  text-align: center;
+  padding: 0.3rem;
+}
+
+.productImage {
+  height: 200px;
+}
+
+.productImage img{
+  border: 1px black;
+}
