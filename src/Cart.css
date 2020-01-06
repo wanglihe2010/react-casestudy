@@ -1,0 +1,20 @@
+.item_container {
+  position: relative;
+  width: 500px;
+  height: 100px;
+  border: 1px solid black;
+  margin: 2px;
+}
+
+.item_image {
+  position: absolute;
+  height: 100%;
+  width: 30%;
+}
+
+.item_description {
+  position: absolute;
+  height: 100%;
+  width: 70%;
+  right: 0px;
+}

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './Product.css'
+import './ProductDisplay.css'
 
-class Product extends Component {
+class ProductDisplay extends Component {
   render() {
     return (
       <div>
@@ -40,4 +40,4 @@ class Product extends Component {
   }
 }
 
-export default Product;
+export default ProductDisplay;

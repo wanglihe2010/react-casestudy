@@ -1,26 +1,32 @@
 import React, { Component } from 'react';
 import './Home.css'
+import { connect } from 'react-redux';
 
 class Home extends Component{
+
+  
   constructor(props) {
     super(props);
+    // this.state = {
+    //   products : [{
+    //     name: "product1",
+    //     price: 32,
+    //   }, 
+    //   {
+    //     name: "product2",
+    //     price: 33,
+    //   }, 
+    //   {
+    //     name: "product3",
+    //     price: 34,
+    //   }, 
+    //   {
+    //     name: "product4",
+    //     price: 35,
+    //   }]
+    // }
     this.state = {
-      products : [{
-        name: "product1",
-        price: 32,
-      }, 
-      {
-        name: "product2",
-        price: 33,
-      }, 
-      {
-        name: "product3",
-        price: 34,
-      }, 
-      {
-        name: "product4",
-        price: 35,
-      }]
+      products : props.products
     }
   }
 
@@ -57,4 +63,4 @@ class Home extends Component{
   }
 }
 
-export default Home;
+export default connect(state=>({products: state.products})) (Home);

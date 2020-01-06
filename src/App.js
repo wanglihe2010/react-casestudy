@@ -5,7 +5,7 @@ import Navbar from './NavBar';
 import Home from './Home';
 import Cart from './Cart';
 import SignIn from './SignIn';
-import Product from './Product';
+import ProductDisplay from './ProductDisplay';
 
 function App() {
   return (
@@ -22,8 +22,8 @@ function App() {
           <Route exact path="/signin">
             <SignIn/>
           </Route>
-          <Route exact path="/product">
-            <Product/>
+          <Route exact path="/products/:id">
+            <ProductDisplay/>
           </Route>
         </Switch>
       </div>
