@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Navbar from './NavBar';
 import Home from './Home';
 import Cart from './Cart';
-import SignIn from './SignIn';
+import SignInModal from './SignInModal';
 import ProductDisplay from './ProductDisplay';
 
 function App() {
@@ -13,19 +13,13 @@ function App() {
       <div>
         <Navbar />
         <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
           <Route exact path="/cart">
             <Cart/>
           </Route>
-          <Route exact path="/signin">
-            <SignIn/>
-          </Route>
-          <Route exact path="/products/:id">
-            <ProductDisplay/>
-          </Route>
+          <Route exact path="/products/:id" component={ProductDisplay}></Route>
+          <Route  path="/" component={Home}></Route>
         </Switch>
+        <SignInModal/>
       </div>
     </Router>
   );

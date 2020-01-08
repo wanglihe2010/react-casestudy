@@ -14,6 +14,10 @@ class Navbar extends Component {
       cartNo: props.cartNo
     };
   }
+
+  signInButtonHandler = (event) => {
+    document.querySelector('.modal-bg').style.display = "flex";
+  }
   render() {
     return (
       <nav className ="navbar">
@@ -22,14 +26,14 @@ class Navbar extends Component {
         </div> 
         <div className ="nav_right">
           <div className ="signup">
-            <Link className="mid-position" to={this.state.signedInUser? "" : "/signin"}>
-              {this.state.signedInUser || "Sign In"}
-            </Link>
+            <button onClick = {this.signInButtonHandler}>
+              {this.props.signedInUser || "Sign In"}
+            </button>
           </div>
           <div className="cart">
             <Link className="mid-position" to="/cart">
               <div className="cart-image">
-                <div className="cart-counter">{this.state.cartNo}</div>
+                <div className="cart-counter">{this.props.cartNo}</div>
               </div>
             </Link>
           </div>
@@ -42,7 +46,7 @@ class Navbar extends Component {
   }
 }
 
-export default connect((state) => ({
-  signedInUser: state.signedInUser,
-  cartNo: state.cart_products.length
+export default connect((storeState) => ({
+  signedInUser: storeState.signedInUser,
+  cartNo: storeState.cart_products.length
 })) (Navbar);

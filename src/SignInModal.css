@@ -1,0 +1,41 @@
+.modal-bg {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  width: 500px;
+  height: 300px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  position: relative;
+}
+
+.close-button {
+  position: absolute;
+  font-size: 2rem;
+  top:5px;
+  right:15px;
+  cursor: pointer;
+  transform: rotate(45deg);
+  border: none;
+  background: none;
+}
+
+.modal-content form {
+  margin: auto;
+}
+.modal-content input {
+  border-radius: 4px;
+  display: block;
+  width: 50%;
+  font-size: 20px;
+  margin: 20px auto;
+}

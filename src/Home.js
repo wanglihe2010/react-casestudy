@@ -1,50 +1,31 @@
 import React, { Component } from 'react';
 import './Home.css'
 import { connect } from 'react-redux';
+import productActions from './reducers/productReducer';
+import queryString from 'query-string'
+import {Link} from 'react-router-dom'
 
 class Home extends Component{
 
-  
-  constructor(props) {
-    super(props);
-    // this.state = {
-    //   products : [{
-    //     name: "product1",
-    //     price: 32,
-    //   }, 
-    //   {
-    //     name: "product2",
-    //     price: 33,
-    //   }, 
-    //   {
-    //     name: "product3",
-    //     price: 34,
-    //   }, 
-    //   {
-    //     name: "product4",
-    //     price: 35,
-    //   }]
-    // }
-    this.state = {
-      products : props.products
-    }
-  }
-
   displayProducts() {
-    return this.state.products.map(item => {
+    const searchKey = queryString.parse(this.props.location.search).key || "";
+    return this.props.products.filter(item=>item.name.toLowerCase().includes(searchKey.toLowerCase())).
+    map((item,index) => {
       return (
-        <div className="productCard">
-          <div className="productImage"> 
-            <img alt="product image"></img>
-          </div>
+        <div className="productCard" key={index}>
+          <Link className ="productDesription" to={"/products/" + item.id}>
+            <div className="productImage"> 
+              <img src = {require('./images/product-images/' + item.img)} alt="product image"></img>
+            </div>
+            <div>
+              {item.name}
+            </div>
+            <div>
+              ${item.price}
+            </div>
+          </Link>
           <div>
-            {item.name}
-          </div>
-          <div>
-            ${item.price}
-          </div>
-          <div>
-            <button>Add to Cart</button>
+            <button onClick={()=>this.props.addToCart(item)}>Add to Cart</button>
           </div>
         </div>
       )
@@ -63,4 +44,7 @@ class Home extends Component{
   }
 }
 
-export default connect(state=>({products: state.products})) (Home);
+export default connect(
+  (state, ownProps)=>({products: state.products}),
+  {addToCart: productActions.addtoCartActionCreator}
+) (Home);

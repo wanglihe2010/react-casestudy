@@ -2,48 +2,64 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import "./Cart.css"
 import productActions from './reducers/productReducer';
-import Product from './models/Product';
 
 
 class Cart extends Component {
   constructor(props) {
     super(props);
+    console.log("cart component loaded")
+    console.log(props);
     this.state = {
-      cartProducts: props.cartProducts
+      cartProducts: props.cartProducts,
+      removeProduct: props.removeProduct
     }
   }
 
+
   displayCartProducts() {
-    return this.state.cartProducts.map(
-      (product: Product) => {
-        return (
-          <div className="item_container">
-            <div className="item_image">
-              image here 
+    if(this.props.cartProducts.length > 0) {
+      return this.props.cartProducts.map(
+        (product,index) => {
+          return (
+            <div className="item_container" key={index}>
+              <div className="item_image">
+                image here 
+              </div>
+              <div className="item_description">
+                <div>
+                  Product Title: {product.name}
+                </div>
+                <div>
+                  Product Price: ${product.price}
+                </div>
+                <div>
+                  Product Availability: {product.availability}
+                </div>
+                <div>
+                  Product Color: {product.color}
+                </div>
+                <div>
+                  <button onClick={()=>this.props.removeProduct(index)}>Remove</button>
+                </div>
+              </div>
             </div>
-            <div className="item_description">
-              <div>
-                Product Title: {product.name}
-              </div>
-              <div>
-                Product Price: ${product.price}
-              </div>
-              <div>
-                Product Availability: {product.availability}
-              </div>
-              <div>
-                Product Color: {product.color}
-              </div>
-            </div>
-          </div>
-        )
-      }
-    )
+          )
+        }
+      )
+    } else {
+      return (
+        <div>
+          Your cart is empty
+        </div>
+      )
+    }
   }
 
   render() {
     return (
       <div>
+        {console.log("page render")}
+        {console.log(this.props)}
         <div>
           <h4>Order Review</h4>  
         </div>
@@ -55,6 +71,7 @@ class Cart extends Component {
   }
 }
 
-export default connect(state => ({
-  cartProducts: state.cart_products
-})) (Cart);
+export default connect(
+  state => ({cartProducts: state.cart_products}),
+  {removeProduct: productActions.removeCartActionCreator}
+) (Cart);
