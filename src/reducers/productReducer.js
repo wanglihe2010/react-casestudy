@@ -15,6 +15,7 @@ const initState = {
   signedInUser: undefined
 };
 
+
 const productActions = {
   addtoCartActionCreator: (product) => ({
     type: addProductToCart,

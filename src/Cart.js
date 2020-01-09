@@ -71,6 +71,8 @@ class Cart extends Component {
   }
 }
 
+
+
 export default connect(
   state => ({cartProducts: state.cart_products}),
   {removeProduct: productActions.removeCartActionCreator}

@@ -11,15 +11,30 @@ class ProductDisplay extends Component {
           <h2>prodcut title</h2>
         </div>
         <div className="productInfo">
-          <div className= "productImage">
-
+          <div className= "product-image-container">
+            <img src="" alt="product image"></img>
           </div>
           <div className= "productDescription">
-
+            <div>product title</div>
+            <div>product description</div>
+            <div>availability and sku</div>
+            <div>
+              color and qty
+            </div>
+            <div>price</div>
           </div>
         </div>
         <div className="productRating">
-          <div></div>
+          <div>rating</div>
+        </div>
+        <div>
+          feature
+        </div>
+        <div>
+          details
+        </div>
+        <div>
+          add to cart
         </div>
       </div>
     );
