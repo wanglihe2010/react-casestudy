@@ -1,12 +1,17 @@
 .productInfo {
+  padding: 2px;
   display: flex;
-  position: relative;
-  max-width: 1000px;
   margin: 5px, auto;
 }
 
 .product-image-container {
+  margin: 2px;
   width: 40%;
+}
+
+.product-image-container img {
+  width: 100%;
+  
 }
 
 .main-container {
@@ -20,7 +25,8 @@
 }
 
 .wrapper {
-  text-align: left;
+  display: flex;
+  flex-direction: column;
   width: 100%;
   max-width: 1272px;
   margin: 0 auto;

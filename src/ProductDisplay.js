@@ -6,13 +6,13 @@ class ProductDisplay extends Component {
   render() {
     console.log(this.props);
     return (
-      <div>
+      <div className="wrapper">
         <div>
           <h2>prodcut title</h2>
         </div>
         <div className="productInfo">
           <div className= "product-image-container">
-            <img src="" alt="product image"></img>
+            <img src={require('./images/product-images/' + this.props.product.img)} alt="product image"></img>
           </div>
           <div className= "productDescription">
             <div>product title</div>
@@ -42,5 +42,5 @@ class ProductDisplay extends Component {
 }
 
 export default connect(
-  (storeState, ownProps)=>({product: storeState.products.filter(item=>item.id == ownProps.match.params.id)})
+  (storeState, ownProps)=>({product: storeState.products.filter(item=>item.id == ownProps.match.params.id)[0]})
 ) (ProductDisplay);
