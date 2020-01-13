@@ -15,13 +15,55 @@ class ProductDisplay extends Component {
             <img src={require('./images/product-images/' + this.props.product.img)} alt="product image"></img>
           </div>
           <div className= "productDescription">
-            <div>product title</div>
-            <div>product description</div>
-            <div>availability and sku</div>
+            <div><h2>product title</h2></div>
+            <div><h2>product description</h2></div>
             <div>
-              color and qty
+              <span>Availability</span>
+              <span className="float_right">SKU#: </span>
             </div>
-            <div>price</div>
+            <div>
+              <hr/>
+            </div>
+            <div className="colors-qty-container">
+              <div className="colors-container">
+                <div className="color-container">
+                  <div>
+                    <button className="color-button"/>
+                  </div>
+                  <div className="color-name">
+                    red
+                  </div>
+                </div>
+              </div>
+              <div className="qty-container">
+                <select>
+                  <option >qty</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <hr/>
+            </div>
+            <div className="rowFlex">
+              <div className="radio-button-container">
+                <input type="radio" name="priceOption" value="fullPrice" id="option1"/>
+                <label for="option1">
+                  <div className="select-indicator"/>
+                  <div className="priceTag">9999</div>
+                </label>
+              </div>
+              <div className="radio-button-container">
+                <input type="radio" name="priceOption" value="montPrice" id="option2"/>
+                <label for="option2">
+                  <div className="select-indicator"/>
+                  <div className="priceTag">20</div>
+                </label>
+              </div>
+              
+            </div>
           </div>
         </div>
         <div className="productRating">
