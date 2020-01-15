@@ -33,10 +33,10 @@ class Cart extends Component {
                   Product Price: ${product.price}
                 </div>
                 <div>
-                  Product Availability: {product.availability}
+                  Product Availability: {product.stock }
                 </div>
                 <div>
-                  Product Color: {product.color}
+                  Product Color: {product.option.color}
                 </div>
                 <div>
                   <button onClick={()=>this.props.removeProduct(index)}>Remove</button>
@@ -56,6 +56,7 @@ class Cart extends Component {
   }
 
   render() {
+    console.log(this.props.cartProducts)
     return (
       <div>
         {console.log("page render")}
@@ -74,6 +75,15 @@ class Cart extends Component {
 
 
 export default connect(
-  state => ({cartProducts: state.cart_products}),
+  state => (
+    {cartProducts: state.cart_products.map(sku => {
+      let sku_obj = state.skus[sku];
+      let product = state.products[sku_obj.pid]
+      return {
+        ...sku_obj,
+        ...product
+      }
+    })}
+  ),
   {removeProduct: productActions.removeCartActionCreator}
 ) (Cart);

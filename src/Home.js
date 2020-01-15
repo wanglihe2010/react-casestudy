@@ -6,33 +6,42 @@ import queryString from 'query-string'
 import {Link} from 'react-router-dom'
 
 class Home extends Component{
+  displayProduct(item, index) {
+    {console.log(item)}
+    return  (
+      <div className="productCard" key={index}>
+        <Link className ="productDesription" to={"/products/" + item.pid}>
+          <div className="productImage"> 
+            <img src = {require('./images/product-images/' + item.img )} alt="product image"></img>
+          </div>
+          <div>
+            {item.name}
+          </div>
+          <div>
+            ${item.price}
+          </div>
+        </Link>
+        <div>
+          <button onClick={()=>this.props.addToCart(item.id)}>Add to Cart</button>
+        </div>
+      </div>
+    )
+  }
 
   displayProducts() {
     const searchKey = queryString.parse(this.props.location.search).key || "";
-    return this.props.products.filter(item=>item.name.toLowerCase().includes(searchKey.toLowerCase())).
-    map((item,index) => {
-      return (
-        <div className="productCard" key={index}>
-          <Link className ="productDesription" to={"/products/" + item.id}>
-            <div className="productImage"> 
-              <img src = {require('./images/product-images/' + item.img)} alt="product image"></img>
-            </div>
-            <div>
-              {item.name}
-            </div>
-            <div>
-              ${item.price}
-            </div>
-          </Link>
-          <div>
-            <button onClick={()=>this.props.addToCart(item)}>Add to Cart</button>
-          </div>
-        </div>
-      )
+    // console.log(this.props.skus);
+    return this.props.skus.map((sku,index) => {
+      let item = {
+        ...sku,
+        name: this.props.products[sku.pid].name
+      };
+      return this.displayProduct(item,index);
     })
   }
 
   render() {
+    {console.log(this.props.products)}
     return (
       <div>
         This is home page !
@@ -45,6 +54,9 @@ class Home extends Component{
 }
 
 export default connect(
-  (state, ownProps)=>({products: state.products}),
+  (state)=>({
+    products: state.products.reduce((products, product) => ({...products, [product.id]: product}), {}), 
+    skus: state.skus
+  }),
   {addToCart: productActions.addtoCartActionCreator}
 ) (Home);

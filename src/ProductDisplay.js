@@ -3,8 +3,63 @@ import './ProductDisplay.css'
 import {connect} from 'react-redux'
 
 class ProductDisplay extends Component {
+  constructor(props) {
+    super(props);
+    this.state= {
+      selectProductSkuObj : this.props.skus[0],
+      optionToSkus:this.props.skus.reduce((obj, sku) => ({...obj, [JSON.stringify(sku.option)]: sku.id}),{}),
+      qty: "qty"
+    }
+  }
+
+  displayColors() {
+    return this.props.skus.map((sku, index)=> {
+      return (
+        <div className="color-container" key={index}>
+          <input type="radio" name="colorOption" value={index} id={index} onChange={this.handleColorOption}/>
+          <label for={index}>
+            <div className="select-indicator"/>
+            <div className="priceTag">{sku.option.color}</div>
+          </label>
+
+            {/* <button className="color-button" style ={{backgroundColor: sku.option.color}}/>
+ 
+          <div className="color-name">
+            {sku.option.color}
+          </div> */}
+        </div>
+      )
+    })
+  }
+
+  displayQty() {
+    const optionList = [...Array(Math.min(this.state.selectProductSkuObj.stock,5)).keys()];
+    return (
+      <div>
+        <select onChange={this.handleQtyOption} value ={this.state.value}>
+          <option >qty</option>
+          {
+            optionList.map(option => <option value={option+1} key={option+1}>{option+1}</option>)
+          }
+        </select>
+      </div>
+    )
+  }
+
+  handleQtyOption = (event) => {
+    this.setState({
+      qty:event.target.value
+    })
+  }
+
+  handleColorOption = (event) => {
+    console.log(event.currentTarget.value)
+    this.setState({
+      selectProductSkuObj: this.props.skus[event.currentTarget.value]
+    })
+  }
   render() {
-    console.log(this.props);
+    console.log(this.state);
     return (
       <div className="wrapper">
         <div>
@@ -12,36 +67,24 @@ class ProductDisplay extends Component {
         </div>
         <div className="productInfo">
           <div className= "product-image-container">
-            <img src={require('./images/product-images/' + this.props.product.img)} alt="product image"></img>
+            <img src={require('./images/product-images/' + this.props.skus[0].img)} alt="product image"></img>
           </div>
           <div className= "productDescription">
-            <div><h2>product title</h2></div>
-            <div><h2>product description</h2></div>
+            <div><h2>{this.props.product.name}</h2></div>
+            <div><h2>{this.props.product.description}</h2></div>
             <div>
-              <span>Availability</span>
-              <span className="float_right">SKU#: </span>
+              <span>{this.state.selectProductSkuObj.stock>0? "in stock": "sold out"}</span>
+              <span className="float_right">SKU#: {this.state.selectProductSkuObj.id}</span>
             </div>
             <div>
               <hr/>
             </div>
             <div className="colors-qty-container">
               <div className="colors-container">
-                <div className="color-container">
-                  <div>
-                    <button className="color-button"/>
-                  </div>
-                  <div className="color-name">
-                    red
-                  </div>
-                </div>
+                {this.displayColors()}
               </div>
               <div className="qty-container">
-                <select>
-                  <option >qty</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                </select>
+                {this.displayQty()}
               </div>
             </div>
             <div>
@@ -84,5 +127,10 @@ class ProductDisplay extends Component {
 }
 
 export default connect(
-  (storeState, ownProps)=>({product: storeState.products.filter(item=>item.id == ownProps.match.params.id)[0]})
+  (storeState, ownProps)=>({
+    skus: storeState.skus.filter(sku=>sku.pid == ownProps.match.params.id),
+    product: storeState.products.reduce(
+      (products, product) => ({...products, [product.id]: product}), {}
+    )[ownProps.match.params.id]
+  })
 ) (ProductDisplay);

@@ -1,5 +1,6 @@
 import {handleActions} from 'redux-actions';
 import Product from '../models/Product';
+import Sku from '../models/Sku';
 
 
 const addProductToCart = "ADD_PRODUCT_TO_CART";
@@ -8,8 +9,26 @@ const updateLoggedInUser = "UPDATE_LOGGEDIN_USER"
 
 const initState = {
   products: [
-    new Product(1,'iPhone',699,'in stock','blue','iphone11Pro.jpg'),
-    new Product(2,'airpod',250,'in stock','white','airpodPro.jpg')
+    new Product("p1","iphone11","apple iPhone 11","iphone 11 feature"),
+    new Product("p2","apple watch","apple watch description","apple watch feature")
+  ],
+  skus: [
+    new Sku("s1","p1",999,10,"iphone11Pro.jpg",{
+      color: "black",
+      memory: "32gb"
+    }),
+    new Sku("s2","p1",999,10,"iphone11Pro.jpg",{
+      color: "white",
+      memory: "32gb"
+    }),
+    new Sku("s3","p1",999,10,"iphone11Pro.jpg",{
+      color: "red",
+      memory: "32gb"
+    }),
+    new Sku("s4","p2",199,10,'airpodPro.jpg',{
+      color: "black",
+      waist: "42mm"
+    })
   ],
   cart_products: [],
   signedInUser: undefined

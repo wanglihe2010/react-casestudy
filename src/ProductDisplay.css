@@ -39,18 +39,22 @@
 }
 .color-container{
   width: 60px;
+  height: 80px;
   margin: 0 25px;
+  display: flex;
+  flex-direction: column;
   align-content: center;
+  justify-content: center;
 } 
 .color-button {
-  background-color: red;
   width: 30px;
   height: 30px;
-  border: 5px solid blue;
+  border: 1px solid black;
   border-radius: 15px;
 }
 
 .color-name {
+  padding-top: 10px;
   width: 100%;
   font: 40px;
   text-align: center;
