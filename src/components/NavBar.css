@@ -75,7 +75,7 @@
 .cart-image {
   width: 35px;
   height: 35px;
-  background-image: url("./cart_icon.svg");
+  background-image: url("../icons/cart_icon.svg");
   background-size: 35px 35px;
   position: relative;
 }

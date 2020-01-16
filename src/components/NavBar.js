@@ -1,5 +1,5 @@
 import {Link} from 'react-router-dom'
-import logo from './logo.svg'
+import logo from '../icons/logo.svg'
 import React, { Component } from 'react';
 import './NavBar.css';
 import { connect } from 'react-redux';

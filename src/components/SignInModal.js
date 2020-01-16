@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './SignInModal.css'
-import authService from './authService.js'
+import authService from '../authService.js'
 import { connect } from 'react-redux';
-import productActions from './reducers/productReducer';
+import productActions from '../reducers/productReducer';
 
 class SignInModal extends Component {
   constructor(props) {

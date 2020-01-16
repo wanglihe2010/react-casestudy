@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Home.css'
 import { connect } from 'react-redux';
-import productActions from './reducers/productReducer';
+import productActions from '../reducers/productReducer';
 import queryString from 'query-string'
 import {Link} from 'react-router-dom'
 
@@ -12,7 +12,7 @@ class Home extends Component{
       <div className="productCard" key={index}>
         <Link className ="productDesription" to={"/products/" + item.pid}>
           <div className="productImage"> 
-            <img src = {require('./images/product-images/' + item.img )} alt="product image"></img>
+            <img src = {require('../images/product-images/' + item.img )} alt="product image"></img>
           </div>
           <div>
             {item.name}

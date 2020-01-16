@@ -16,7 +16,7 @@ function App() {
           <Route exact path="/cart">
             <Cart/>
           </Route>
-          <Route exact path="/products/:id" component={ProductDisplay}></Route>
+          <Route  path="/products/:id" component={ProductDisplay}></Route>
           <Route  path="/" component={Home}></Route>
         </Switch>
         <SignInModal/>

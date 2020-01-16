@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import './ProductDisplay.css'
 import {connect} from 'react-redux'
+import queryString from 'query-string'
 
 class ProductDisplay extends Component {
   constructor(props) {
     super(props);
     this.state= {
-      selectProductSkuObj : this.props.skus[0],
+      searchKey : queryString.parse(this.props.location.search).sku,
+      selectProductSkuObj : this.props.skus.filter(sku => sku.id == queryString.parse(this.props.location.search).sku)[0] || this.props.skus[0],
       optionToSkus:this.props.skus.reduce((obj, sku) => ({...obj, [JSON.stringify(sku.option)]: sku.id}),{}),
       qty: "qty"
     }
@@ -60,6 +62,7 @@ class ProductDisplay extends Component {
   }
   render() {
     console.log(this.state);
+    console.log(this.props);
     return (
       <div className="wrapper">
         <div>
@@ -67,7 +70,7 @@ class ProductDisplay extends Component {
         </div>
         <div className="productInfo">
           <div className= "product-image-container">
-            <img src={require('./images/product-images/' + this.props.skus[0].img)} alt="product image"></img>
+            <img src={require('../images/product-images/' + this.props.skus[0].img)} alt="product image"></img>
           </div>
           <div className= "productDescription">
             <div><h2>{this.props.product.name}</h2></div>
