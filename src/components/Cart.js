@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import "./Cart.css"
 import productActions from '../reducers/productReducer';
+import {Link} from 'react-router-dom'
 
 
 class Cart extends Component {
@@ -42,7 +43,9 @@ class Cart extends Component {
               </div>
               <div className="item_description">
                 <div>
-                  Product Title: {product.name}
+                  <Link to={"/products/" + product.pid+ "?sku=" + product.id}>
+                    Product Title: {product.name}
+                  </Link>
                 </div>
                 <div>
                   Product Price: ${product.price}
