@@ -1,12 +1,7 @@
-.wrapper {
+.home-wrapper {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  /*
-  grid-template-columns: repeat(4,1fr);
-  grid-gap: 1rem;
-  grid-auto-rows: minmax(300px, auto);
-  */
+  justify-content: space-between;
   padding: 1rem;
 }
 
@@ -15,12 +10,16 @@
 }
 
 .productCard {
+  display: flex;
+  flex-direction: column;
   justify-items: center;
   align-items: center;
-  position: relative;
-  margin: 1rem;
+  margin: 30px 10px;
   width: 200px;
   height: 300px;
+  border: 1px black solid;
+  background-color: lightgrey;
+  border-radius: 20px;
 }
 
 .productCard div {
@@ -29,12 +28,18 @@
   padding: 0.3rem;
 }
 
+.productCard a {
+  text-decoration: none;
+  color: black;
+}
+
 .productImage {
-  width: 90%;
+
   height: 200px;
 }
 
 .productImage img{
+  border-radius: 10px;
   height: 90%;
   width: 90%;
 }

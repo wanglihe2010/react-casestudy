@@ -35,6 +35,12 @@ class SignInModal extends Component {
       this.setState({errorMessage: "Invalid log in"})
     }
   }
+
+  signOut = (event) => {
+    this.props.updateUser("");
+    this.closeModalHandler(event);
+    
+  }
   render() {
     return (
       <div className="modal-bg">
@@ -45,6 +51,7 @@ class SignInModal extends Component {
             <input type="password" name="password" placeholder="password" value = {this.state.password} onChange = {this.formChangehandler}/>
             <input type="submit" value="Sign In" />
           </form>
+          <button className="sign_out_button" onClick={this.signOut}>Sign Out</button>
           <div>
             {this.state.errorMessage}
           </div>
@@ -54,6 +61,6 @@ class SignInModal extends Component {
   }
 }
 
-export default connect(null, {
+export default connect((storeState)=>({signedInuser: storeState.signedInUser}), {
   updateUser: productActions.updateUserActionCreator
 }) (SignInModal);

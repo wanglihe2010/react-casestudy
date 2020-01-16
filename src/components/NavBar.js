@@ -20,27 +20,27 @@ class Navbar extends Component {
   }
   render() {
     return (
-      <nav className ="navbar">
+      <nav className ="navbar row_flex">
         <div className ="nav_left">
           <Link to="/"><img src = {logo} alt="logo" className="nav_logo"/></Link>
         </div> 
-        <div className ="nav_right">
-          <div className ="signup">
-            <button onClick = {this.signInButtonHandler}>
+        <div className ="nav_mid">
+          <SearchBar/>
+        </div>   
+        <div className ="nav_right row_flex">
+          <div>
+            <button onClick = {this.signInButtonHandler} className="signup-button">
               {this.props.signedInUser || "Sign In"}
             </button>
           </div>
-          <div className="cart">
-            <Link className="mid-position" to="/cart">
+          <div>
+            <Link  to="/cart">
               <div className="cart-image">
                 <div className="cart-counter">{this.props.cartNo}</div>
               </div>
             </Link>
           </div>
         </div> 
-        <div className ="nav_mid">
-          <SearchBar/>
-        </div>   
       </nav>
     );
   }
@@ -48,5 +48,5 @@ class Navbar extends Component {
 
 export default connect((storeState) => ({
   signedInUser: storeState.signedInUser,
-  cartNo: storeState.cart_products.length
+  cartNo: Object.values(storeState.cart_products).reduce((sum,item) =>(sum+ item),0)
 })) (Navbar);

@@ -1,7 +1,6 @@
 .container {
   width: 60%;
   max-width: 400px;
-  height: 2rem;
 }
 
 .mid-position {
@@ -20,8 +19,7 @@
   width: 100%;
   height: 100%;
   font-size: 16px;
-  position: relative;
-  padding-left: 1rem;
+  padding-left: 5px;
 }
 
 .embed-submit-field button {
@@ -35,9 +33,7 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: 20px 20px;
+  cursor: pointer;
 }
 
-.embed-submit-field button:hover{
-  background-color: gray;
-}
 

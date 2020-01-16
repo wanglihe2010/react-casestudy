@@ -16,6 +16,8 @@
   padding: 20px;
   border-radius: 10px;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .close-button {
@@ -31,6 +33,7 @@
 
 .modal-content form {
   margin: auto;
+  width: 100%;
 }
 .modal-content input {
   border-radius: 4px;
@@ -38,4 +41,16 @@
   width: 50%;
   font-size: 20px;
   margin: 20px auto;
+
+}
+.sign_out_button{
+  width: 250px;
+  height: 50px;
+  border-radius: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 20px;
+  background-color: red;
+  margin-left: auto;
+  margin-right: auto;
 }

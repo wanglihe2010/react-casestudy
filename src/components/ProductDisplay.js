@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
-import './ProductDisplay.css'
-import {connect} from 'react-redux'
-import queryString from 'query-string'
+import './ProductDisplay.css';
+import {connect} from 'react-redux';
+import queryString from 'query-string';
+import productActions from '../reducers/productReducer';
 
 class ProductDisplay extends Component {
   constructor(props) {
     super(props);
     this.state= {
-      searchKey : queryString.parse(this.props.location.search).sku,
       selectProductSkuObj : this.props.skus.filter(sku => sku.id == queryString.parse(this.props.location.search).sku)[0] || this.props.skus[0],
       optionToSkus:this.props.skus.reduce((obj, sku) => ({...obj, [JSON.stringify(sku.option)]: sku.id}),{}),
-      qty: "qty"
+      qty: 1
     }
   }
 
@@ -18,7 +18,7 @@ class ProductDisplay extends Component {
     return this.props.skus.map((sku, index)=> {
       return (
         <div className="color-container" key={index}>
-          <input type="radio" name="colorOption" value={index} id={index} onChange={this.handleColorOption}/>
+          <input type="radio" name="colorOption" value={index} id={index} onChange={this.handleColorOption} checked={this.state.selectProductSkuObj.id == sku.id}/>
           <label for={index}>
             <div className="select-indicator"/>
             <div className="priceTag">{sku.option.color}</div>
@@ -41,16 +41,22 @@ class ProductDisplay extends Component {
         <select onChange={this.handleQtyOption} value ={this.state.value}>
           <option >qty</option>
           {
-            optionList.map(option => <option value={option+1} key={option+1}>{option+1}</option>)
+            optionList.map(option => <option value={option+1} key={option+1} selected={option===0}>{option+1}</option>)
           }
         </select>
       </div>
     )
   }
 
+  handleAddToCart = (event) => {
+    if(this.state.qty !== 'qty') {
+      this.props.addToCart({sku:this.state.selectProductSkuObj.id, qty:this.state.qty})
+    }
+  }
+
   handleQtyOption = (event) => {
     this.setState({
-      qty:event.target.value
+      qty:Number(event.target.value)
     })
   }
 
@@ -65,7 +71,7 @@ class ProductDisplay extends Component {
     console.log(this.props);
     return (
       <div className="wrapper">
-        <div>
+        <div className="productTitle">
           <h2>prodcut title</h2>
         </div>
         <div className="productInfo">
@@ -121,8 +127,8 @@ class ProductDisplay extends Component {
         <div>
           details
         </div>
-        <div>
-          add to cart
+        <div className="row-middle">
+          <button className="add-to-cart" onClick={this.handleAddToCart}>Add To Cart</button>
         </div>
       </div>
     );
@@ -131,9 +137,8 @@ class ProductDisplay extends Component {
 
 export default connect(
   (storeState, ownProps)=>({
-    skus: storeState.skus.filter(sku=>sku.pid == ownProps.match.params.id),
-    product: storeState.products.reduce(
-      (products, product) => ({...products, [product.id]: product}), {}
-    )[ownProps.match.params.id]
-  })
+    skus: Object.values(storeState.skus).filter(sku=>sku.pid == ownProps.match.params.id),
+    product: storeState.products[ownProps.match.params.id]
+  }),
+  {addToCart: productActions.addtoCartActionCreator}
 ) (ProductDisplay);

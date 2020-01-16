@@ -10,7 +10,7 @@ class Home extends Component{
     {console.log(item)}
     return  (
       <div className="productCard" key={index}>
-        <Link className ="productDesription" to={"/products/" + item.pid}>
+        <Link to={"/products/" + item.pid}>
           <div className="productImage"> 
             <img src = {require('../images/product-images/' + item.img )} alt="product image"></img>
           </div>
@@ -45,7 +45,7 @@ class Home extends Component{
     return (
       <div>
         This is home page !
-        <div className="wrapper">
+        <div className="home-wrapper">
           {this.displayProducts()}
         </div>
       </div>
@@ -55,8 +55,8 @@ class Home extends Component{
 
 export default connect(
   (state)=>({
-    products: state.products.reduce((products, product) => ({...products, [product.id]: product}), {}), 
-    skus: state.skus
+    products: state.products, 
+    skus: Object.values(state.skus)
   }),
   {addToCart: productActions.addtoCartActionCreator}
 ) (Home);
