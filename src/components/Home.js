@@ -22,7 +22,7 @@ class Home extends Component{
           </div>
         </Link>
         <div>
-          <button onClick={()=>this.props.addToCart({sku:item.id, qty:1})}>Add to Cart</button>
+          <button onClick={()=>this.props.addToCart(item.id)}>Add to Cart</button>
         </div>
       </div>
     )

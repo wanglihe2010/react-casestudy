@@ -31,8 +31,8 @@ const initState = {
       waist: "42mm"
     })
   ]),
-  // cart is {sku:qty}
-  cart_products: {},
+  // cart is only the sku number
+  cart_products: [],
   signedInUser: ""
 };
 
@@ -42,9 +42,9 @@ const productActions = {
     type: addProductToCart,
     param: product
   }),
-  removeCartActionCreator: (product) => ({
+  removeCartActionCreator: (productId) => ({
     type: removeCartProduct,
-    param: product
+    param: productId
   }),
   updateUserActionCreator: (username) => ({
     type: updateLoggedInUser,
@@ -52,23 +52,20 @@ const productActions = {
   }),
   reducer: handleActions({
     [addProductToCart]: (state,action) => {
-      let newState =  ({
+      console.log(state);
+      return ({
       ...state,
-      cart_products: {...state.cart_products, [action.param.sku]: action.param.qty + (state.cart_products[action.param.sku] || 0) }
+      cart_products: [...state.cart_products, action.param]
+    })},
+    [removeCartProduct]: (state, action) => {
+      // get the index and remove
+      console.log("remove reducer called" + action.param);
+      let newState = ({
+        ...state,
+        cart_products: state.cart_products.filter((product,i) => i!== action.param )
       });
       console.log(newState);
-      return newState;
-    },
-    [removeCartProduct]: (state, action) => {
-      delete state.cart_products[action.param]
-      console.log({currState:state})
-      // console.log("remove reducer called" + action.param);
-      // let newState = ({
-      //   ...state,
-      //   cart_products: delete )
-      // });
-      // console.log(newState);
-      return {...state}},
+      return newState;},
     [updateLoggedInUser]: (state, action) => ({
       ...state,
       signedInUser: action.param

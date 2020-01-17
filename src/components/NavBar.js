@@ -48,5 +48,5 @@ class Navbar extends Component {
 
 export default connect((storeState) => ({
   signedInUser: storeState.signedInUser,
-  cartNo: Object.values(storeState.cart_products).reduce((sum,item) =>(sum+ item),0)
+  cartNo: storeState.cart_products.length
 })) (Navbar);

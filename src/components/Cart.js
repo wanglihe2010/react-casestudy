@@ -16,20 +16,6 @@ class Cart extends Component {
     }
   }
 
-  displayQty(qty) {
-    console.log({qty:qty});
-    const optionList = [...Array(qty).keys()];
-    return (
-      <div>
-        <select  value ={this.state.value}>
-          {
-            optionList.map(option => <option value={option+1} key={option+1} selected={option+1 === qty}>{option+1}</option>)
-          }
-        </select>
-      </div>
-    )
-  }
-
 
   displayCartProducts() {
     console.log(this.props.cartProducts)
@@ -57,10 +43,7 @@ class Cart extends Component {
                   Product Color: {product.option.color}
                 </div>
                 <div>
-                  {this.displayQty(product.qty)}
-                </div>
-                <div>
-                  <button onClick={()=>this.props.removeProduct(product.id)}>Remove</button>
+                  <button onClick={()=>this.props.removeProduct(index)}>Remove</button>
                 </div>
               </div>
             </div>
@@ -97,7 +80,7 @@ class Cart extends Component {
 
 export default connect(
   state => (
-    {cartProducts: Object.keys(state.cart_products).map(sku => {
+    {cartProducts: state.cart_products.map(sku => {
       let sku_obj = state.skus[sku];
       let product = state.products[sku_obj.pid]
       return {
