@@ -50,7 +50,9 @@ class ProductDisplay extends Component {
 
   handleAddToCart = (event) => {
     if(this.state.qty !== 'qty') {
-      this.props.addToCart({sku:this.state.selectProductSkuObj.id, qty:this.state.qty})
+      let qtyList = [...Array(this.state.qty).keys()]
+      qtyList.map(number => this.props.addToCart(this.state.selectProductSkuObj.id))
+      
     }
   }
 

@@ -29,9 +29,9 @@ class Home extends Component{
   }
 
   displayProducts() {
-    const searchKey = queryString.parse(this.props.location.search).key || "";
+    const searchKey = (queryString.parse(this.props.location.search).key || "").toLowerCase();
     // console.log(this.props.skus);
-    return this.props.skus.map((sku,index) => {
+    return this.props.skus.filter(sku => this.props.products[sku.pid].name.toLowerCase().includes(searchKey)).map((sku,index) => {
       let item = {
         ...sku,
         name: this.props.products[sku.pid].name
