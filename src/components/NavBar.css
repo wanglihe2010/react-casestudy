@@ -1,31 +1,36 @@
+
+
 .navbar {
   background-color: white;
-  height: 70px;
   width: 100%;
   justify-content: center;
   align-items: center;
   border: 1px black solid;
+  flex-wrap: wrap;
+  padding: 5px 0 15px 0;
 }
 
 .nav_left {
-  width: 10%;
-  min-width: 60px;
+  flex: 1;
+  /* min-width: 60px; */
 }
 
 .nav_right {
-  width: 30%;
+  flex: 3;
   align-items: center;
   justify-content: space-evenly;
+  min-width: 200px;
 }
 
 .nav_mid {
-  width: 60%;
+  flex: 6;
   display: flex;
   justify-content: center;
 }
 
 
 .nav_logo {
+  margin: 0 10px;
   width: 50px;
   height: 50px;
 }
@@ -87,3 +92,13 @@
   flex-direction: row;
 }
 
+@media only screen and (max-width: 484px) {
+  
+
+
+
+  .nav_mid {
+    order: 3;
+    margin-top: 10px;
+  }
+}
