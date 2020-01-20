@@ -3,12 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App';
 import * as serviceWorker from './serviceWorker';
-import {createStore} from 'redux'
+import {createStore, applyMiddleware} from 'redux'
 import {Provider} from 'react-redux'
 import productActions from './reducers/productReducer';
+import createSagaMiddleware from 'redux-saga';
+import {watchFetchProducts} from './sagas/productSaga'
 
+const sagaMiddleWare = createSagaMiddleware();
 
-const store = createStore(productActions.reducer);
+const store = createStore(productActions.reducer, applyMiddleware(sagaMiddleWare));
+sagaMiddleWare.run(watchFetchProducts);
 ReactDOM.render(
   <Provider store= {store}>
     <App />

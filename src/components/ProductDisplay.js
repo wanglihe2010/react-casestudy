@@ -8,7 +8,7 @@ class ProductDisplay extends Component {
   constructor(props) {
     super(props);
     this.state= {
-      selectProductSkuObj : this.props.skus.filter(sku => sku.id == queryString.parse(this.props.location.search).sku)[0] || this.props.skus[0],
+      selectProductSkuObj : this.props.skus.filter(sku => sku.id === queryString.parse(this.props.location.search).sku)[0] || this.props.skus[0],
       optionToSkus:this.props.skus.reduce((obj, sku) => ({...obj, [JSON.stringify(sku.option)]: sku.id}),{}),
       qty: 1
     }
@@ -18,7 +18,7 @@ class ProductDisplay extends Component {
     return this.props.skus.map((sku, index)=> {
       return (
         <div className="color-container" key={index}>
-          <input type="radio" name="colorOption" value={index} id={index} onChange={this.handleColorOption} checked={this.state.selectProductSkuObj.id == sku.id}/>
+          <input type="radio" name="colorOption" value={index} id={index} onChange={this.handleColorOption} checked={this.state.selectProductSkuObj.id === sku.id}/>
           <label for={index}>
             <div className="select-indicator"/>
             <div className="priceTag">{sku.option.color}</div>
@@ -78,7 +78,7 @@ class ProductDisplay extends Component {
         </div>
         <div className="productInfo">
           <div className= "product-image-container">
-            <img src={require('../images/product-images/' + this.props.skus[0].img)} alt="product image"></img>
+            <img src={require('../images/product-images/' + this.props.skus[0].img)} alt={this.props.skus[0].img}></img>
           </div>
           <div className= "productDescription">
             <div><h2>{this.props.product.name}</h2></div>
@@ -139,7 +139,7 @@ class ProductDisplay extends Component {
 
 export default connect(
   (storeState, ownProps)=>({
-    skus: Object.values(storeState.skus).filter(sku=>sku.pid == ownProps.match.params.id),
+    skus: Object.values(storeState.skus).filter(sku=>sku.pid === ownProps.match.params.id),
     product: storeState.products[ownProps.match.params.id]
   }),
   {addToCart: productActions.addtoCartActionCreator}

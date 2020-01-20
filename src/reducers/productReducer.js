@@ -6,7 +6,9 @@ import convertArrayToObject from '../convertArrayToObject'
 
 const addProductToCart = "ADD_PRODUCT_TO_CART";
 const removeCartProduct = "REMOVE_CART_PRODUCT";
-const updateLoggedInUser = "UPDATE_LOGGEDIN_USER"
+const updateLoggedInUser = "UPDATE_LOGGEDIN_USER";
+const fetchProductsSuccess = "FETCH_PRODUCTS_Success";
+const fetchProducts = "FETCH_PRODUCTS";
 
 const initState = {
   products: convertArrayToObject([
@@ -38,6 +40,15 @@ const initState = {
 
 
 const productActions = {
+  fetchProductActionCreator: () => ({
+    type: fetchProducts
+  }),
+  successFetchProductActionCreator: (fetchData) => {
+    console.log(fetchData);
+    return ({
+    type: fetchProductsSuccess,
+    param: fetchData
+  })},
   addtoCartActionCreator: (product) => ({
     type: addProductToCart,
     param: product
@@ -51,6 +62,10 @@ const productActions = {
     param: username
   }),
   reducer: handleActions({
+    [fetchProductsSuccess]: (state,action) => ({
+      ...state,
+      products: action.param
+    }),
     [addProductToCart]: (state,action) => {
       console.log(state);
       return ({

@@ -6,13 +6,23 @@ import queryString from 'query-string'
 import {Link} from 'react-router-dom'
 
 class Home extends Component{
+  constructor(props) {
+    super(props);
+    this.state ={
+      isLoading : true
+    }
+  }
+  componentDidMount() {
+    this.props.fetchProducts();
+  }
+
   displayProduct(item, index) {
-    {console.log(item)}
+    // {console.log(item)}
     return  (
       <div className="productCard" key={index}>
         <Link to={"/products/" + item.pid}>
           <div className="productImage"> 
-            <img src = {require('../images/product-images/' + item.img )} alt="product image"></img>
+            <img src = {require('../images/product-images/' + item.img )} alt={item.img}></img>
           </div>
           <div>
             {item.name}
@@ -41,7 +51,7 @@ class Home extends Component{
   }
 
   render() {
-    {console.log(this.props.products)}
+    // {console.log(this.props.products)}
     return (
       <div>
         This is home page !
@@ -58,5 +68,8 @@ export default connect(
     products: state.products, 
     skus: Object.values(state.skus)
   }),
-  {addToCart: productActions.addtoCartActionCreator}
+  {
+    addToCart: productActions.addtoCartActionCreator,
+    fetchProducts: productActions.fetchProductActionCreator
+  }
 ) (Home);
