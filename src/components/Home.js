@@ -19,19 +19,20 @@ class Home extends Component{
   displayProduct(item, index) {
     // {console.log(item)}
     return  (
-      <div className="productCard" key={index}>
-        <Link to={"/products/" + item.pid}>
-          <div className="productImage"> 
-            <img src = {require('../images/product-images/' + item.img )} alt={item.img}></img>
-          </div>
-          <div>
-            {item.name}
-          </div>
-          <div>
-            ${item.price}
-          </div>
-        </Link>
-        <div>
+      <div className="productCard-container" key={index}>
+        <div className="productCard-content">
+          <Link to={"/products/" + item.pid}>
+            <div className="productImage"> 
+              <img src = {require('../images/product-images/' + item.img )} alt={item.img}></img>
+            </div>
+            <div>
+              {item.name}
+            </div>
+            <div>
+              ${item.price}
+            </div>
+          </Link>
+  
           <button onClick={()=>this.props.addToCart(item.id)}>Add to Cart</button>
         </div>
       </div>

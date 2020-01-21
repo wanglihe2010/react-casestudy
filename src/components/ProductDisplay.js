@@ -20,15 +20,11 @@ class ProductDisplay extends Component {
         <div className="color-container" key={index}>
           <input type="radio" name="colorOption" value={index} id={index} onChange={this.handleColorOption} checked={this.state.selectProductSkuObj.id === sku.id}/>
           <label for={index}>
-            <div className="select-indicator"/>
+            <div className="color-block" style={{backgroundColor: sku.option.color}}>
+              <div className= "color-block-inner"  style={{backgroundColor: sku.option.color}}/>
+            </div>
             <div className="priceTag">{sku.option.color}</div>
           </label>
-
-            {/* <button className="color-button" style ={{backgroundColor: sku.option.color}}/>
- 
-          <div className="color-name">
-            {sku.option.color}
-          </div> */}
         </div>
       )
     })
@@ -72,7 +68,7 @@ class ProductDisplay extends Component {
     console.log(this.state);
     console.log(this.props);
     return (
-      <div className="wrapper">
+      <div className="product-detail-wrapper">
         <div className="productTitle">
           <h2>prodcut title</h2>
         </div>
@@ -83,14 +79,14 @@ class ProductDisplay extends Component {
           <div className= "productDescription">
             <div><h2>{this.props.product.name}</h2></div>
             <div><h2>{this.props.product.description}</h2></div>
-            <div>
-              <span>{this.state.selectProductSkuObj.stock>0? "in stock": "sold out"}</span>
-              <span className="float_right">SKU#: {this.state.selectProductSkuObj.id}</span>
+            <div className="left-right-container">
+              <span className="margin-horiental-5 ">{this.state.selectProductSkuObj.stock>0? "in stock": "sold out"}</span>
+              <span className="margin-horiental-5">SKU#: {this.state.selectProductSkuObj.id}</span>
             </div>
             <div>
               <hr/>
             </div>
-            <div className="colors-qty-container">
+            <div className="left-right-container">
               <div className="colors-container">
                 {this.displayColors()}
               </div>
@@ -106,14 +102,14 @@ class ProductDisplay extends Component {
                 <input type="radio" name="priceOption" value="fullPrice" id="option1"/>
                 <label for="option1">
                   <div className="select-indicator"/>
-                  <div className="priceTag">9999</div>
+                  <div className="priceTag">${this.state.selectProductSkuObj.price}</div>
                 </label>
               </div>
               <div className="radio-button-container">
                 <input type="radio" name="priceOption" value="montPrice" id="option2"/>
                 <label for="option2">
                   <div className="select-indicator"/>
-                  <div className="priceTag">20</div>
+                  <div className="priceTag">${(this.state.selectProductSkuObj.price / 24).toFixed(2)}/mo.</div>
                 </label>
               </div>
               

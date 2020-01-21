@@ -68,7 +68,7 @@ class Cart extends Component {
         <div>
           <h4>Order Review</h4>  
         </div>
-        <div>
+        <div className='items-container'>
           {this.displayCartProducts()}
         </div>
       </div>
