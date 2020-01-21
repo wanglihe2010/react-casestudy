@@ -20,10 +20,10 @@ class ProductDisplay extends Component {
         <div className="color-container" key={index}>
           <input type="radio" name="colorOption" value={index} id={index} onChange={this.handleColorOption} checked={this.state.selectProductSkuObj.id === sku.id}/>
           <label for={index}>
-            <div className="color-block" style={{backgroundColor: sku.option.color}}>
+            <div className="color-block" style={{backgroundColor: this.state.selectProductSkuObj.id === sku.id? "white": sku.option.color}}>
               <div className= "color-block-inner"  style={{backgroundColor: sku.option.color}}/>
             </div>
-            <div className="priceTag">{sku.option.color}</div>
+            <div className="color-name">{sku.option.color}</div>
           </label>
         </div>
       )
@@ -99,7 +99,7 @@ class ProductDisplay extends Component {
             </div>
             <div className="rowFlex">
               <div className="radio-button-container">
-                <input type="radio" name="priceOption" value="fullPrice" id="option1"/>
+                <input type="radio" name="priceOption" value="fullPrice" id="option1" checked="true"/>
                 <label for="option1">
                   <div className="select-indicator"/>
                   <div className="priceTag">${this.state.selectProductSkuObj.price}</div>
