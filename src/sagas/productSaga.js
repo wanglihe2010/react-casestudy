@@ -16,9 +16,8 @@ const getDataFromApi = async () => {
 
 function* fetchProducts() {
     try {
-        // yield delay(4000);
         const fetchData = yield getDataFromApi();
-        console.log({fetchData});
+        // console.log({fetchData});
         // const fetchData =  {
         //     p1: new Product("p1","iphone12","apple iPhone 11","iphone 11 feature"),
         //     p2: new Product("p2","apple watch2","apple watch description","apple watch feature")

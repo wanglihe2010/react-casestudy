@@ -8,8 +8,10 @@ const addProductToCart = "ADD_PRODUCT_TO_CART";
 const removeCartProduct = "REMOVE_CART_PRODUCT";
 const updateLoggedInUser = "UPDATE_LOGGEDIN_USER";
 const fetchProductsSuccess = "FETCH_PRODUCTS_Success";
+const fetchProductsFail = "FETCH_PRODUCTS_Fail";
 const fetchProducts = "FETCH_PRODUCTS";
 
+//TODO: what if products and skus does not match 
 const initState = {
   products: convertArrayToObject([
     new Product("p1","iphone11","apple iPhone 11","iphone 11 feature"),
@@ -44,10 +46,13 @@ const productActions = {
     type: fetchProducts
   }),
   successFetchProductActionCreator: (fetchData) => {
-    console.log(fetchData);
     return ({
     type: fetchProductsSuccess,
     param: fetchData
+  })},
+  failFetchProductActionCreator: () => {
+    return ({
+    type: fetchProductsFail
   })},
   addtoCartActionCreator: (product) => ({
     type: addProductToCart,
@@ -65,6 +70,9 @@ const productActions = {
     [fetchProductsSuccess]: (state,action) => ({
       ...state,
       products: action.param
+    }),
+    [fetchProductsFail]: (state, action) => ({
+      ...state
     }),
     [addProductToCart]: (state,action) => {
       console.log(state);
