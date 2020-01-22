@@ -70,7 +70,8 @@ class ProductDisplay extends Component {
     return (
       <div className="product-detail-wrapper">
         <div className="productTitle">
-          <h2>prodcut title</h2>
+          <button>back</button>
+          <h2>{this.props.product.name}</h2>
         </div>
         <div className="productInfo">
           <div className= "product-image-container">

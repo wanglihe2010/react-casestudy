@@ -10,17 +10,15 @@ import axios from 'axios';
 //     return res;
 // }
 
-const getDataFromApi = () => axios.get('localhost:4000/api/products', {
-    method:'GET',
-    headers: {
-      'Accept': 'application/json'
-    }
-  }).then(data => console.log({myData: data})).catch(err => console.log(err));
+const getDataFromApi = async () => {
+    return await fetch('localhost:4000/api/products').then(res => res.json());
+}
 
 function* fetchProducts() {
     try {
         // yield delay(4000);
-        const testData = yield call(getDataFromApi);
+        const testData = yield fetch('localhost:4000/api/products');
+        console.log({testData});
         const fetchData =  {
             p1: new Product("p1","iphone12","apple iPhone 11","iphone 11 feature"),
             p2: new Product("p2","apple watch2","apple watch description","apple watch feature")
