@@ -1,4 +1,4 @@
-import {put, takeLatest, call, delay} from 'redux-saga/effects';
+import {put, takeLatest} from 'redux-saga/effects';
 import productActions from '../reducers/productReducer';
 import Product from '../models/Product';
 import axios from 'axios';
@@ -11,18 +11,18 @@ import axios from 'axios';
 // }
 
 const getDataFromApi = async () => {
-    return await fetch('localhost:4000/api/products').then(res => res.json());
+    return await axios.get('http://localhost:4000/api/products').then(res => res.data);
 }
 
 function* fetchProducts() {
     try {
         // yield delay(4000);
-        const testData = yield fetch('localhost:4000/api/products');
-        console.log({testData});
-        const fetchData =  {
-            p1: new Product("p1","iphone12","apple iPhone 11","iphone 11 feature"),
-            p2: new Product("p2","apple watch2","apple watch description","apple watch feature")
-        };
+        const fetchData = yield getDataFromApi();
+        console.log({fetchData});
+        // const fetchData =  {
+        //     p1: new Product("p1","iphone12","apple iPhone 11","iphone 11 feature"),
+        //     p2: new Product("p2","apple watch2","apple watch description","apple watch feature")
+        // };
         // console.log({fetchData: fetchData.next()});
         yield put(productActions.successFetchProductActionCreator(fetchData));
 

@@ -1,6 +1,6 @@
 const express = require('express');
 const productsRoutes = require('./router/products')
-const cors = require('cors');
+// const cors = require('cors');
 
 const app = express();
 
@@ -16,8 +16,10 @@ app.use((req, res, next) => {
     res.setHeader(
         "Access-Control-Allow-Method",
         "GET, POST, PATCH, DELETE, OPTIONS"
-    )
-})
+    );
+    next();
+});
+
 app.use('/api/products',productsRoutes);
 
 
